@@ -1,0 +1,8 @@
+/* Ensure the movie posters are responsive */
+.movie-poster {
+  width: 75%;
+  max-width: 500px;  /* Optional, limits the image width */
+  height: auto; /* Keeps the aspect ratio intact */
+}
+
+/* You can add more CSS for layout and design */
