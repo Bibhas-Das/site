@@ -1,8 +1,98 @@
-/* Ensure the movie posters are responsive */
-.movie-poster {
-  width: 75%;
-  max-width: 500px;  /* Optional, limits the image width */
-  height: auto; /* Keeps the aspect ratio intact */
+/* General body styling */
+body {
+  font-family: Arial, sans-serif;
+  font-size: 16px;
+  margin: 0;
+  padding: 0;
+  background-color: #f9f9f9;
 }
 
-/* You can add more CSS for layout and design */
+/* Header styling */
+header {
+  background-color: #003366;
+  color: white;
+  padding: 1rem;
+}
+
+/* Navigation styling */
+nav {
+  background-color: #0055a5;
+}
+
+nav ul {
+  list-style-type: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-wrap: wrap;
+}
+
+nav li {
+  display: inline-block;
+  width: auto;
+  margin-right: 15px;
+}
+
+nav a {
+  color: #ffffff;
+  text-decoration: none;
+  padding: 8px 12px;
+  display: inline-block;
+}
+
+nav a:hover {
+  background-color: #007acc;
+  border-radius: 4px;
+}
+
+/* Main styling */
+main {
+  background-color: #ffffff;
+  font-size: 1.1em;
+  padding: 2rem;
+}
+
+/* h1 styling */
+h1 {
+  text-align: center;
+  font-family: 'Georgia', serif;
+  color: #333366;
+}
+
+/* Paragraphs */
+p {
+  line-height: 1.6;
+}
+
+/* Footer */
+footer {
+  background-color: #003366;
+  color: white;
+  text-align: center;
+  padding: 1rem;
+}
+
+/* Movie poster images */
+.movie-poster {
+  width: 100%;
+  max-width: 200px;
+  height: auto;
+  border: 2px solid #ccc;
+  border-radius: 8px;
+}
+
+/* Make the ordered list look nice */
+ol {
+  list-style-position: inside;
+  padding-left: 0;
+}
+
+figure {
+  margin: 2rem 0;
+  text-align: center;
+}
+
+figcaption {
+  margin-top: 0.5rem;
+  font-weight: bold;
+}
