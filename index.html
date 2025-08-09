@@ -1,71 +1,327 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<title>Movie List</title>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<title>My Movie List</title>
 <style>
-    body {
-        font-family: Arial, sans-serif;
-        background: #f4f4f4;
-        margin: 0;
-        padding: 0;
-    }
-    h1 {
-        text-align: center;
-        padding: 20px;
-        background: #333;
-        color: #fff;
-        margin: 0;
-    }
-    ul {
-        list-style: none;
-        padding: 0;
-        max-width: 600px;
-        margin: 20px auto;
-    }
-    li {
-        background: white;
-        padding: 15px;
-        margin: 10px 0;
-        border-radius: 8px;
-        cursor: pointer;
-        box-shadow: 0 2px 5px rgba(0,0,0,0.1);
-        transition: background 0.3s;
-    }
-    li:hover {
-        background: #f0f0f0;
-    }
+  :root{
+    --bg1: #f7fbff;
+    --bg2: #ffffff;
+    --accent: #375ef6;
+    --muted: #6b7280;
+    --card: #fff;
+    --shadow: 0 6px 18px rgba(33,43,77,0.08);
+    --radius: 12px;
+  }
+  *{box-sizing:border-box}
+  body{
+    margin:0;
+    font-family: Inter, ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial;
+    background: linear-gradient(180deg,var(--bg1),var(--bg2));
+    color:#0f172a;
+    -webkit-font-smoothing:antialiased;
+    -moz-osx-font-smoothing:grayscale;
+    padding:32px 18px;
+  }
+
+  .wrap{
+    max-width:1100px;
+    margin:0 auto;
+  }
+
+  header{
+    display:flex;
+    gap:16px;
+    align-items:center;
+    justify-content:space-between;
+    margin-bottom:18px;
+  }
+  .title {
+    display:flex;
+    gap:14px;
+    align-items:center;
+  }
+  h1{
+    font-size:20px;
+    margin:0;
+    letter-spacing:-0.2px;
+  }
+  .sub {
+    color:var(--muted);
+    font-size:13px;
+    margin-top:4px;
+  }
+
+  .controls{
+    display:flex;
+    gap:10px;
+    align-items:center;
+  }
+
+  .search {
+    padding:10px 12px;
+    border-radius:10px;
+    border:1px solid rgba(15,23,42,0.06);
+    box-shadow: var(--shadow);
+    min-width:220px;
+    background:#fff;
+    outline:none;
+    font-size:14px;
+  }
+
+  .count-badge {
+    background:rgba(55,94,246,0.12);
+    color:var(--accent);
+    padding:6px 10px;
+    border-radius:999px;
+    font-weight:600;
+    font-size:13px;
+  }
+
+  main {
+    margin-top:12px;
+  }
+
+  .grid {
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(260px,1fr));
+    gap:16px;
+    margin-top:16px;
+  }
+
+  .card {
+    background:var(--card);
+    padding:14px;
+    border-radius:var(--radius);
+    box-shadow: var(--shadow);
+    display:flex;
+    flex-direction:column;
+    gap:10px;
+    transition:transform .16s ease, box-shadow .16s ease;
+    cursor:default;
+  }
+  .card:focus-within, .card:hover{
+    transform: translateY(-6px);
+  }
+
+  .movie-title {
+    font-size:16px;
+    font-weight:600;
+    margin:0;
+  }
+  .movie-meta {
+    font-size:13px;
+    color:var(--muted);
+    word-break:break-all;
+  }
+
+  .row {
+    display:flex;
+    gap:8px;
+    align-items:center;
+    margin-top:auto;
+  }
+
+  .open-btn {
+    background:linear-gradient(90deg,var(--accent), #2b56e8);
+    color:#fff;
+    border:none;
+    padding:9px 12px;
+    border-radius:10px;
+    cursor:pointer;
+    font-weight:600;
+    font-size:13px;
+    box-shadow: 0 6px 14px rgba(55,94,246,0.18);
+  }
+  .open-btn[disabled] {
+    background:transparent;
+    color:var(--muted);
+    border:1px dashed rgba(15,23,42,0.06);
+    box-shadow:none;
+    cursor:not-allowed;
+  }
+
+  .hint { font-size:13px; color:var(--muted) }
+
+  /* small screens */
+  @media (max-width:520px){
+    header{flex-direction:column;align-items:flex-start; gap:10px}
+    .controls{width:100%}
+    .search{width:100%}
+  }
 </style>
 </head>
 <body>
+  <div class="wrap">
+    <header>
+      <div class="title">
+        <div style="font-size:26px">🎬</div>
+        <div>
+          <h1>My Movie List</h1>
+          <div class="sub">Movies loaded from <code>movies.json</code></div>
+        </div>
+      </div>
 
-<h1>🎬 Movie List</h1>
-<ul id="movieList"></ul>
+      <div class="controls">
+        <input id="search" class="search" placeholder="Search movies (type to filter)" aria-label="Search movies" />
+        <div id="count" class="count-badge">0</div>
+      </div>
+    </header>
+
+    <main>
+      <div id="grid" class="grid" aria-live="polite"></div>
+      <div id="fallback" class="hint" style="margin-top:12px; display:none">No movies found in the JSON or fetch failed — check console and ensure you're serving the files over HTTP.</div>
+    </main>
+  </div>
 
 <script>
-    async function loadMovies() {
-        try {
-            const response = await fetch('movies.json');
-            const movies = await response.json();
+(function(){
+  const GRID = document.getElementById('grid');
+  const COUNT = document.getElementById('count');
+  const SEARCH = document.getElementById('search');
+  const FALLBACK = document.getElementById('fallback');
 
-            const movieList = document.getElementById('movieList');
+  let movies = []; // normalized array of {name, link, raw}
 
-            movies.forEach(movie => {
-                const li = document.createElement('li');
-                li.textContent = movie.movie_name;
-                li.addEventListener('click', () => {
-                    window.location.href = movie.movie_link; // Redirect to Google Drive
-                });
-                movieList.appendChild(li);
-            });
+  function isValidLink(s){
+    return typeof s === 'string' && /^\s*https?:\/\//i.test(s);
+  }
 
-        } catch (error) {
-            console.error('Error loading movies:', error);
-        }
+  function findName(obj){
+    // prefer keys with 'name' 'title' or 'movie'
+    for(const k of Object.keys(obj)){
+      if(/name|title|movie/i.test(k) && !/link|url|href/i.test(k)){
+        const v = obj[k];
+        if(typeof v === 'string' && v.trim()) return v.trim();
+      }
     }
+    // fallback: first non-url string value
+    for(const k of Object.keys(obj)){
+      const v = obj[k];
+      if(typeof v === 'string' && v.trim() && !isValidLink(v)) return v.trim();
+    }
+    return 'Untitled';
+  }
 
-    loadMovies();
+  function findLink(obj){
+    // prefer keys with link/url/drive/file/href in name
+    for(const k of Object.keys(obj)){
+      if(/link|url|drive|file|href/i.test(k)){
+        const v = obj[k];
+        if(isValidLink(v)) return v.trim();
+      }
+    }
+    // fallback: first value that looks like a URL
+    for(const k of Object.keys(obj)){
+      const v = obj[k];
+      if(isValidLink(v)) return v.trim();
+    }
+    return null;
+  }
+
+  function normalize(raw){
+    return {
+      name: findName(raw),
+      link: findLink(raw),
+      raw
+    };
+  }
+
+  function render(list){
+    GRID.innerHTML = '';
+    if(!list.length){
+      FALLBACK.style.display = 'block';
+      COUNT.textContent = 0;
+      return;
+    }
+    FALLBACK.style.display = 'none';
+    COUNT.textContent = list.length;
+    list.forEach(item => {
+      const card = document.createElement('article');
+      card.className = 'card';
+      card.tabIndex = 0;
+
+      const title = document.createElement('h3');
+      title.className = 'movie-title';
+      title.textContent = item.name;
+
+      const meta = document.createElement('div');
+      meta.className = 'movie-meta';
+      meta.textContent = item.link || 'No link available';
+
+      const row = document.createElement('div');
+      row.className = 'row';
+
+      const openBtn = document.createElement('button');
+      openBtn.className = 'open-btn';
+      openBtn.textContent = item.link ? 'Open' : 'No valid link';
+      if(!item.link) openBtn.disabled = true;
+
+      openBtn.addEventListener('click', (e) => {
+        e.stopPropagation();
+        if(item.link) window.open(item.link, '_blank', 'noopener');
+      });
+
+      // clicking the card opens link if valid
+      card.addEventListener('click', () => {
+        if(item.link) window.open(item.link, '_blank', 'noopener');
+      });
+
+      // keyboard: Enter opens
+      card.addEventListener('keydown', (ev) => {
+        if((ev.key === 'Enter' || ev.key === ' ') && item.link){
+          ev.preventDefault();
+          window.open(item.link, '_blank', 'noopener');
+        }
+      });
+
+      row.appendChild(openBtn);
+      card.appendChild(title);
+      card.appendChild(meta);
+      card.appendChild(row);
+      GRID.appendChild(card);
+    });
+  }
+
+  function filterAndRender(q){
+    const ql = q.trim().toLowerCase();
+    if(!ql) return render(movies);
+    const filtered = movies.filter(m => m.name.toLowerCase().includes(ql));
+    render(filtered);
+    COUNT.textContent = filtered.length;
+  }
+
+  async function load(){
+    try {
+      const res = await fetch('movies.json', {cache: "no-store"});
+      if(!res.ok) throw new Error('fetch failed: ' + res.status);
+      const data = await res.json();
+      if(!Array.isArray(data)){
+        // If JSON was an object-of-objects, convert to array
+        if(typeof data === 'object' && data !== null){
+          const arr = Object.values(data);
+          movies = arr.map(normalize);
+        } else {
+          movies = [];
+        }
+      } else {
+        movies = data.map(normalize);
+      }
+      render(movies);
+    } catch (err) {
+      console.error('Error loading movies.json:', err);
+      FALLBACK.style.display = 'block';
+      FALLBACK.textContent = 'Could not load movies.json — see console. Make sure you serve this folder over HTTP (e.g. run `python -m http.server`).';
+    }
+  }
+
+  SEARCH.addEventListener('input', (e) => filterAndRender(e.target.value));
+
+  // kick off
+  load();
+
+})();
 </script>
-
 </body>
 </html>
