@@ -35,20 +35,12 @@
     li:hover {
         background: #f0f0f0;
     }
-    iframe {
-        display: block;
-        margin: 20px auto;
-        border: none;
-        width: 80%;
-        height: 500px;
-    }
 </style>
 </head>
 <body>
 
 <h1>🎬 Movie List</h1>
 <ul id="movieList"></ul>
-<iframe id="moviePlayer" src="" allowfullscreen></iframe>
 
 <script>
     async function loadMovies() {
@@ -57,14 +49,12 @@
             const movies = await response.json();
 
             const movieList = document.getElementById('movieList');
-            const moviePlayer = document.getElementById('moviePlayer');
 
             movies.forEach(movie => {
                 const li = document.createElement('li');
                 li.textContent = movie.movie_name;
                 li.addEventListener('click', () => {
-                    moviePlayer.src = movie.movie_link;
-                    window.scrollTo({ top: moviePlayer.offsetTop, behavior: 'smooth' });
+                    window.location.href = movie.movie_link; // Redirect to Google Drive
                 });
                 movieList.appendChild(li);
             });
