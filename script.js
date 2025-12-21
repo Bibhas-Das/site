@@ -1,4 +1,4 @@
-const PIN = "123456"; // CHANGE to her favorite 6-digit PIN ❤️
+const PIN = "040404"; // CHANGE to her favorite 6-digit PIN ❤️
 
 const inputs = document.querySelectorAll(".pin-input");
 const error = document.getElementById("error");
@@ -33,6 +33,13 @@ function checkPin() {
     }
 }
 
+
+
+
+
+
+
+
 function unlock() {
     document.getElementById("lockScreen").style.display = "none";
     document.getElementById("mainContent").classList.remove("hidden");
@@ -42,16 +49,44 @@ function unlock() {
 }
 
 /* Typing Effect */
-const text = "Dear Sujaya, this little Christmas surprise is for you ❤️";
+// const text = "Dear Sujaya, this little Christmas surprise is for you ❤️";
+// let i = 0;
+//
+// function typeText() {
+//     if (i < text.length) {
+//         document.getElementById("typing").innerText += text.charAt(i);
+//         i++;
+//         setTimeout(typeText, 80);
+//     }
+// }
+
+
+
+/* Typing Effect */
+const typingEl = document.getElementById("typing");
+
+const text = `Hoo Ho Ho 🎅
+Advance Marry Christmas
+Dear Sujaya 💖`;
+
 let i = 0;
 
 function typeText() {
     if (i < text.length) {
-        document.getElementById("typing").innerText += text.charAt(i);
+        typingEl.textContent += text[i]; // preserves spaces & line breaks
         i++;
-        setTimeout(typeText, 80);
+        setTimeout(typeText, 100);
     }
 }
+
+
+
+
+
+
+
+
+
 
 /* Scratch Card */
 function initScratch() {
@@ -89,3 +124,13 @@ function initScratch() {
 }
 canvas.addEventListener("touchstart", e => e.preventDefault(), { passive: false });
 canvas.addEventListener("touchmove", e => e.preventDefault(), { passive: false });
+
+
+// 🔒 Disable touch scrolling (mobile)
+document.addEventListener(
+    "touchmove",
+    function (e) {
+        e.preventDefault();
+    },
+    { passive: false }
+);
