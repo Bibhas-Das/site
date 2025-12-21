@@ -87,3 +87,5 @@ function initScratch() {
         scratch(t.clientX - r.left, t.clientY - r.top);
     });
 }
+canvas.addEventListener("touchstart", e => e.preventDefault(), { passive: false });
+canvas.addEventListener("touchmove", e => e.preventDefault(), { passive: false });
