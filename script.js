@@ -1,10 +1,12 @@
-const PIN = "040404"; // CHANGE to her favorite 6-digit PIN ❤️
+const PIN = "040404";
 
 const inputs = document.querySelectorAll(".pin-input");
 const error = document.getElementById("error");
 
 inputs.forEach((input, index) => {
+
     input.addEventListener("input", () => {
+        input.value = input.value.replace(/\D/g, '');
         if (input.value && index < inputs.length - 1) {
             inputs[index + 1].focus();
         }
@@ -19,27 +21,18 @@ inputs.forEach((input, index) => {
 });
 
 function checkPin() {
-    let enteredPin = "";
-    inputs.forEach(i => enteredPin += i.value);
-
-    if (enteredPin.length === 6) {
-        if (enteredPin === PIN) {
-            unlock();
-        } else {
-            error.innerText = "Almost… try again ❤️";
+    const entered = Array.from(inputs).map(i => i.value).join('');
+    if (entered.length === 6) {
+        if (entered === PIN) unlock();
+        else {
+            error.textContent = "Almost… try again ❤️";
             inputs.forEach(i => i.value = "");
             inputs[0].focus();
         }
     }
 }
 
-
-
-
-
-
-
-
+/* Unlock */
 function unlock() {
     document.getElementById("lockScreen").style.display = "none";
     document.getElementById("mainContent").classList.remove("hidden");
@@ -48,47 +41,20 @@ function unlock() {
     initScratch();
 }
 
-/* Typing Effect */
-// const text = "Dear Sujaya, this little Christmas surprise is for you ❤️";
-// let i = 0;
-//
-// function typeText() {
-//     if (i < text.length) {
-//         document.getElementById("typing").innerText += text.charAt(i);
-//         i++;
-//         setTimeout(typeText, 80);
-//     }
-// }
-
-
-
-/* Typing Effect */
-const typingEl = document.getElementById("typing");
-
+/* Typing */
 const text = `Hoo Ho Ho 🎅
-Advance Marry Christmas
+Advance Merry Christmas
 Dear Sujaya 💖`;
 
 let i = 0;
-
 function typeText() {
     if (i < text.length) {
-        typingEl.textContent += text[i]; // preserves spaces & line breaks
-        i++;
-        setTimeout(typeText, 100);
+        document.getElementById("typing").textContent += text[i++];
+        setTimeout(typeText, 90);
     }
 }
 
-
-
-
-
-
-
-
-
-
-/* Scratch Card */
+/* Scratch */
 function initScratch() {
     const canvas = document.getElementById("scratch");
     const ctx = canvas.getContext("2d");
@@ -99,8 +65,6 @@ function initScratch() {
     ctx.fillStyle = "#bbb";
     ctx.fillRect(0, 0, canvas.width, canvas.height);
 
-    let down = false;
-
     function scratch(x, y) {
         ctx.globalCompositeOperation = "destination-out";
         ctx.beginPath();
@@ -108,29 +72,12 @@ function initScratch() {
         ctx.fill();
     }
 
-    canvas.addEventListener("mousedown", () => down = true);
-    canvas.addEventListener("mouseup", () => down = false);
-    canvas.addEventListener("mousemove", e => {
+    let down = false;
+    canvas.addEventListener("pointerdown", () => down = true);
+    canvas.addEventListener("pointerup", () => down = false);
+    canvas.addEventListener("pointermove", e => {
         if (!down) return;
         const r = canvas.getBoundingClientRect();
         scratch(e.clientX - r.left, e.clientY - r.top);
     });
-
-    canvas.addEventListener("touchmove", e => {
-        const r = canvas.getBoundingClientRect();
-        const t = e.touches[0];
-        scratch(t.clientX - r.left, t.clientY - r.top);
-    });
 }
-canvas.addEventListener("touchstart", e => e.preventDefault(), { passive: false });
-canvas.addEventListener("touchmove", e => e.preventDefault(), { passive: false });
-
-
-// 🔒 Disable touch scrolling (mobile)
-document.addEventListener(
-    "touchmove",
-    function (e) {
-        e.preventDefault();
-    },
-    { passive: false }
-);

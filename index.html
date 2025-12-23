@@ -3,7 +3,10 @@
 <head>
 <meta charset="UTF-8">
 <title>Secret Santa ❤️</title>
-<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+<meta name="viewport"
+content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
 <link rel="stylesheet" href="style.css">
 </head>
 
@@ -11,63 +14,65 @@
 
 <div class="overlay"></div>
 
-<!-- LOCK SCREEN -->
-<div id="lockScreen" class="lock glass">
+<!-- 🔐 LOCK SCREEN -->
+<section id="lockScreen" class="screen glass">
 
-    <h1>🎄 Secret Santa 🎅</h1>
-    <h3>for</h3>
+    <h1 class="title">🎄 Secret Santa 🎅</h1>
+    <p class="subtitle">for</p>
 
     <div class="name-image">
-        <img src="sujaya_name.jpg" alt="Sujaya Name">
+        <img src="sujaya_name.jpg" alt="Sujaya">
     </div>
 
-    <p class="pin-text">It’s your special & favorite 6-digit PIN 💕</p>
+    <p class="pin-text">
+        It’s your special & favorite <b>6-digit PIN</b> 💕
+    </p>
 
     <div class="pin-box">
-        <input type="password" maxlength="1" class="pin-input" inputmode="numeric" pattern="[0-9]*">
-        <input type="password" maxlength="1" class="pin-input" inputmode="numeric" pattern="[0-9]*">
-        <input type="password" maxlength="1" class="pin-input" inputmode="numeric" pattern="[0-9]*">
-        <input type="password" maxlength="1" class="pin-input" inputmode="numeric" pattern="[0-9]*">
-        <input type="password" maxlength="1" class="pin-input" inputmode="numeric" pattern="[0-9]*">
-        <input type="password" maxlength="1" class="pin-input" inputmode="numeric" pattern="[0-9]*">
+        <input type="password" inputmode="numeric" maxlength="1" class="pin-input">
+        <input type="password" inputmode="numeric" maxlength="1" class="pin-input">
+        <input type="password" inputmode="numeric" maxlength="1" class="pin-input">
+        <input type="password" inputmode="numeric" maxlength="1" class="pin-input">
+        <input type="password" inputmode="numeric" maxlength="1" class="pin-input">
+        <input type="password" inputmode="numeric" maxlength="1" class="pin-input">
     </div>
 
-
     <span id="error"></span>
+</section>
 
-</div>
-
-<!-- MAIN CONTENT -->
-<div id="mainContent" class="hidden">
+<!-- 🎁 MAIN CONTENT -->
+<section id="mainContent" class="screen hidden">
 
     <audio id="music" loop>
         <source src="music.mp3" type="audio/mpeg">
     </audio>
 
-    <img src='hoho.jpg' class='hoho_img'>
-    <div id="typing"> </div>
+    <img src="hoho.jpg" class="hero-img">
+
+    <div id="typing"></div>
 
     <div class="container glass">
 
-        <h2>✨ Scratch softly… something special is waiting for you 🎁</h2>
+        <h2 class="hint">
+            ✨ Scratch softly to reveal your gift 🎁
+        </h2>
+
         <div class="card">
             <div class="message">
-                Dear Sujaya❤️<br>
-                You have own 947 Rs cash vouture from Secret Santa 🎁
+                Dear Sujaya ❤️<br>
+                You won ₹947 cash voucher 🎁
             </div>
             <canvas id="scratch"></canvas>
         </div>
 
-        <p class="note">Please Scratch me 💖</p>
+        <p class="note">Scratch gently 💖</p>
     </div>
 
+</section>
 
-
-</div>
-
-    <footer class="site-footer">
-        Initiated by <strong>IDFC First Bank</strong> ❤️ <strong>Secret Santa </strong>
-    </footer>
+<footer class="site-footer">
+    Initiated by <strong>IDFC First Bank</strong> ❤️ <strong>Secret Santa</strong>
+</footer>
 
 <script src="script.js"></script>
 <script src="snow.js"></script>
