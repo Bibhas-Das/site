@@ -1,161 +1,96 @@
-* {
-margin: 0;
-padding: 0;
-box-sizing: border-box;
-font-family: 'Segoe UI', sans-serif;
-}
-
-html, body {
-    width: 100%;
-    height: 100%;
-    overflow: hidden;
-    touch-action: manipulation;
-}
-
 body {
-    background: url("santa2.jpg") center / cover no-repeat;
-    color: #fff;
+  background: #ffffff;
+  font-family: Arial, Helvetica, sans-serif;
 }
 
-/* Overlay */
-.overlay {
-    position: fixed;
-    inset: 0;
-    background: rgba(0,0,0,0.45);
-    z-index: -1;
+.resume {
+  width: 820px;
+  margin: 20px auto;
+  border: 2px solid #000;
+  padding: 15px 20px;
+  box-sizing: border-box;
 }
 
-/* Common screen */
-.screen {
-    min-height: 100vh;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    padding: clamp(16px, 5vw, 40px);
-    text-align: center;
+h1 {
+  text-align: center;
+  margin: 0;
+  font-size: 22px;
+  font-weight: bold;
 }
 
-/* Glass */
-.glass {
-    background: rgba(255,255,255,0.15);
-    backdrop-filter: blur(6px);
-    border-radius: 24px;
-    box-shadow: 0 20px 40px rgba(0,0,0,0.4);
+.contact {
+  text-align: center;
+  font-size: 13px;
+  margin: 6px 0 12px;
 }
 
-/* Titles */
-.title {
-    font-size: clamp(26px, 6vw, 38px);
+.contact a {
+  color: #0047ff;
+  text-decoration: none;
 }
 
-.subtitle {
-    opacity: 0.8;
-    margin-bottom: 10px;
+.section {
+  margin-bottom: 10px;
 }
 
-.pin-text {
-    margin: 16px 0;
-    font-size: clamp(14px, 4vw, 16px);
+.section-title {
+  background: #eef3f3;
+  padding: 5px 8px;
+  font-weight: bold;
+  font-size: 13px;
 }
 
-/* Name Image */
-.name-image img {
-    max-width: min(260px, 70vw);
-    height: auto;
-    border-radius: 12px;
-    box-shadow: 0 0 20px rgba(255,105,180,0.6);
+.section p {
+  font-size: 13px;
+  margin: 6px 0;
+  line-height: 1.4;
 }
 
-/* PIN */
-.pin-box {
-    display: flex;
-    gap: clamp(6px, 2vw, 12px);
+table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 5px;
+  font-size: 12.5px;
 }
 
-.pin-input {
-    width: clamp(38px, 10vw, 50px);
-    height: clamp(48px, 12vw, 60px);
-    font-size: 18px;
-    text-align: center;
-    border-radius: 12px;
-    border: none;
-    outline: none;
+table th, table td {
+  border: 1px solid #000;
+  padding: 5px;
+  text-align: center;
 }
 
-/* Error */
-#error {
-margin-top: 10px;
-color: #ffd54f;
+table th {
+  font-weight: bold;
 }
 
-/* Hidden */
-.hidden {
-    display: none;
+.two-col {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  font-size: 13px;
+  margin-top: 5px;
 }
 
-/* Hero Image */
-.hero-img {
-    width: 100%;
-    max-height: 200px;
-    object-fit: contain;
+.two-col ul {
+  margin: 0;
+  padding-left: 18px;
 }
 
-/* Typing */
-#typing {
-max-width: 90%;
-margin: 20px auto;
-font-size: clamp(18px, 5vw, 28px);
-line-height: 1.4;
-white-space: pre-wrap;
-font-family: 'Old English Text MT', 'Georgia', serif;
-color: #ffe4ec;
+.projects p {
+  margin-bottom: 6px;
 }
 
-/* Container */
-.container {
-    width: min(92%, 420px);
-    margin-top: 20px;
-    padding: 22px;
+.inline-list {
+  display: flex;
+  gap: 30px;
+  font-size: 13px;
+  margin-top: 6px;
 }
 
-/* Scratch Card */
-.card {
-    width: 100%;
-    aspect-ratio: 2 / 1;
-    margin-top: 20px;
-    border-radius: 20px;
-    overflow: hidden;
-    background: #fff;
-    position: relative;
+.inline-list span::before {
+  content: "• ";
 }
 
-.message {
-    position: absolute;
-    inset: 0;
-    color: #e91e63;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    text-align: center;
-    font-size: clamp(16px, 5vw, 22px);
-    font-weight: bold;
-    padding: 10px;
-}
-
-canvas {
-    position: absolute;
-    inset: 0;
-    touch-action: none;
-}
-
-/* Footer */
-.site-footer {
-    position: fixed;
-    bottom: 10px;
-    width: 100%;
-    text-align: center;
-    font-size: clamp(12px, 3vw, 14px);
-    color: rgba(255,255,255,0.75);
-    pointer-events: none;
+.date {
+  margin-top: 10px;
+  font-size: 13px;
 }

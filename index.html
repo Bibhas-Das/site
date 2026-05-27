@@ -2,80 +2,58 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<title>Secret Santa ❤️</title>
-
-<meta name="viewport"
-content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-
+<title>Bibhas Das | Resume</title>
 <link rel="stylesheet" href="style.css">
 </head>
-
 <body>
 
-<div class="overlay"></div>
+<div class="resume">
+  <h1 id="name"></h1>
 
-<!-- 🔐 LOCK SCREEN -->
-<section id="lockScreen" class="screen glass">
+  <p class="contact" id="contact"></p>
 
-    <h1 class="title">🎄 Secret Santa 🎅</h1>
-    <p class="subtitle">for</p>
+  <div class="section">
+    <div class="section-title">Career Objective</div>
+    <p id="objective"></p>
+  </div>
 
-    <div class="name-image">
-        <img src="sujaya_name.jpg" alt="Sujaya">
-    </div>
+  <div class="section">
+    <div class="section-title">Education and Qualification</div>
+    <table id="education"></table>
+  </div>
 
-    <p class="pin-text">
-        It’s your special & favorite <b>6-digit PIN</b> 💕
-    </p>
+  <div class="section">
+    <div class="section-title">Technical Skills</div>
+    <div class="two-col" id="skills"></div>
+  </div>
 
-    <div class="pin-box">
-        <input type="password" inputmode="numeric" maxlength="1" class="pin-input">
-        <input type="password" inputmode="numeric" maxlength="1" class="pin-input">
-        <input type="password" inputmode="numeric" maxlength="1" class="pin-input">
-        <input type="password" inputmode="numeric" maxlength="1" class="pin-input">
-        <input type="password" inputmode="numeric" maxlength="1" class="pin-input">
-        <input type="password" inputmode="numeric" maxlength="1" class="pin-input">
-    </div>
+  <div class="section">
+    <div class="section-title">Projects</div>
+    <div id="projects"></div>
+  </div>
 
-    <span id="error"></span>
-</section>
+  <div class="section">
+    <div class="section-title">Soft Skills</div>
+    <div class="two-col" id="softSkills"></div>
+  </div>
 
-<!-- 🎁 MAIN CONTENT -->
-<section id="mainContent" class="screen hidden">
+  <div class="section">
+    <div class="section-title">Known Languages</div>
+    <div class="inline-list" id="languages"></div>
+  </div>
 
-    <audio id="music" loop>
-        <source src="music.mp3" type="audio/mpeg">
-    </audio>
+  <div class="section">
+    <div class="section-title">Hobbies/Interest</div>
+    <div class="inline-list" id="hobbies"></div>
+  </div>
 
-    <img src="hoho.jpg" class="hero-img">
-
-    <div id="typing"></div>
-
-    <div class="container glass">
-
-        <h2 class="hint">
-            ✨ Scratch softly to reveal your gift 🎁
-        </h2>
-
-        <div class="card">
-            <div class="message">
-                Dear Sujaya ❤️<br>
-                You won ₹947 cash voucher 🎁
-            </div>
-            <canvas id="scratch"></canvas>
-        </div>
-
-        <p class="note">Scratch gently 💖</p>
-    </div>
-
-</section>
-
-<footer class="site-footer">
-    Initiated by <strong>IDFC First Bank</strong> ❤️ <strong>Secret Santa</strong>
-</footer>
+  <div class="section">
+    <div class="section-title">Declaration</div>
+    <p id="declaration"></p>
+    <p class="date" id="datePlace"></p>
+  </div>
+</div>
 
 <script src="script.js"></script>
-<script src="snow.js"></script>
-
 </body>
 </html>

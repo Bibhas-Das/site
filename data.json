@@ -1,0 +1,72 @@
+{
+  "name": "Bibhas Das",
+  "contact": {
+    "email": "bibhasdas1205@gmail.com",
+    "phone": "7384513355",
+    "address": "Mahish Bathan, Sec-v, Kolkata - 700102",
+    "linkedin": "https://www.linkedin.com/in/bibhas-das-628637249/",
+    "github": "https://github.com/Bibhas-Das"
+  },
+  "careerObjective": "Passionate about technology and coding, I aim to apply my skills in development and problem-solving to contribute to innovative projects and professional growth.",
+  "education": [
+    {
+      "institute": "Sister Nivedita University",
+      "qualification": "MCA",
+      "board": "Sister Nivedita University",
+      "year": "2025 (Pursuing)",
+      "score": "8.85 CGPA"
+    },
+    {
+      "institute": "Dinabandhu Andrews Institute of Technology & Management",
+      "qualification": "BCA",
+      "board": "MAKAUT",
+      "year": "2023",
+      "score": "9.45 CGPA"
+    },
+    {
+      "institute": "Muragachha High (H.S) School",
+      "qualification": "HS",
+      "board": "WBCHSE",
+      "year": "2020",
+      "score": "76.6%"
+    },
+    {
+      "institute": "Muragachha High (H.S) School",
+      "qualification": "MP",
+      "board": "WBBSE",
+      "year": "2018",
+      "score": "79.7%"
+    }
+  ],
+  "technicalSkills": {
+    "languages": ["C", "Python", "Shell Script", "SQL"],
+    "web": ["HTML", "CSS", "JavaScript", "PHP"],
+    "database": ["MySQL"],
+    "platforms": ["UNIX", "Linux", "Windows"]
+  },
+  "projects": [
+    {
+      "title": "Caution Money Refund System",
+      "tech": "PHP, MySQL, HTML, CSS, JavaScript",
+      "link": "https://github.com/Bibhas-Das/Caution_Money_Refund_sys",
+      "description": "Web-based system for students to request caution money refunds online with role-based verification and status tracking."
+    },
+    {
+      "title": "AB-Editor",
+      "tech": "Python",
+      "link": "https://github.com/Bibhas-Das/AB_Editor",
+      "description": "Terminal-based lightweight text editor built from scratch without external libraries."
+    },
+    {
+      "title": "EASYSQL",
+      "tech": "Python, MySQL",
+      "link": "https://github.com/Bibhas-Das/EASYSQL",
+      "description": "Command-line tool for writing SQL queries with auto-suggestions and syntax correction."
+    }
+  ],
+  "softSkills": ["Team Collaboration", "Self-Motivation", "Adaptability", "Problem-Solving"],
+  "knownLanguages": ["Bengali", "Hindi", "English"],
+  "hobbies": ["Drawing & Painting", "Exploring Linux and tech tools", "Building mini coding projects"],
+  "declaration": "I hereby declare that the above mentioned information is correct to the best of my knowledge.",
+  "datePlace": "11/04/2025, Kolkata"
+}
